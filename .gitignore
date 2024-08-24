@@ -1,3 +1,6 @@
+node_modules/
+.vscode/
+
 # Compiled class file
 *.class
 
