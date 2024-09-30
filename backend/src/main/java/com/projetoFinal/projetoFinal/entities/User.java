@@ -1,4 +1,4 @@
-package entities;
+package com.projetoFinal.projetoFinal.entities;
 
 import jakarta.persistence.Entity;
 
