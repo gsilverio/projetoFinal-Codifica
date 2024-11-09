@@ -1,0 +1,10 @@
+.custom-navbar {
+    /* overflow: hidden; */
+    height: 10vh;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
