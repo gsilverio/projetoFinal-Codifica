@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import Signup from "./pages/Signup";
 
 function Rotas() {
   // return <></>;
@@ -11,6 +12,7 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/cart" element={<Cart />}/>
+        <Route path="/signup" element={<Signup />}/>
       </Routes>
     </Router>
   )
