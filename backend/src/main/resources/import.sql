@@ -9,6 +9,10 @@
 -- INSERT IGNORE INTO `users` VALUES ('admin', '{bcrypt}$2a$12$kIWBj1W6Y/8G0b30Y4sW7ONP6oNZLeI77dcVeBfVYfBoAqoVN6Hb6', '1');
 -- INSERT IGNORE INTO `authorities` VALUES ('admin', 'admin');
 
+
+INSERT INTO tb_roles(role) VALUES ('ADMIN'), ('USER');
+
+
 INSERT INTO tb_category(name) VALUES ('Acessórios');
 INSERT INTO tb_category(name) VALUES ('Armazenamento');
 INSERT INTO tb_category(name) VALUES ('Computadores');
