@@ -1,4 +1,4 @@
-package com.projetofinal.demo.controllers.exceptions;
+package com.projetoFinal.demo.controllers.exceptions;
 
 import java.io.Serial;
 import java.io.Serializable;

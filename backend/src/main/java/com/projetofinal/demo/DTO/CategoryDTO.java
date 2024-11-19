@@ -1,6 +1,6 @@
-package com.projetofinal.demo.DTO;
+package com.projetoFinal.demo.DTO;
 
-import com.projetofinal.demo.entities.Category;
+import com.projetoFinal.demo.entities.Category;
 
 import java.io.Serial;
 import java.io.Serializable;

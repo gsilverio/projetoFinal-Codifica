@@ -1,11 +1,11 @@
-package com.projetofinal.demo.services;
+package com.projetoFinal.demo.services;
 
 
-import com.projetofinal.demo.DTO.CategoryDTO;
-import com.projetofinal.demo.entities.Category;
-import com.projetofinal.demo.repositories.CategoryRepository;
-import com.projetofinal.demo.services.exceptions.DatabaseException;
-import com.projetofinal.demo.services.exceptions.ResourceNotFoundException;
+import com.projetoFinal.demo.DTO.CategoryDTO;
+import com.projetoFinal.demo.entities.Category;
+import com.projetoFinal.demo.repositories.CategoryRepository;
+import com.projetoFinal.demo.services.exceptions.DatabaseException;
+import com.projetoFinal.demo.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

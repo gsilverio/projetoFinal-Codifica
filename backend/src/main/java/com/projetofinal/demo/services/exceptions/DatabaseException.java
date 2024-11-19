@@ -1,4 +1,4 @@
-package com.projetofinal.demo.services.exceptions;
+package com.projetoFinal.demo.services.exceptions;
 
 import java.io.Serial;
 

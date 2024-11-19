@@ -1,7 +1,7 @@
-package com.projetofinal.demo.controllers;
+package com.projetoFinal.demo.controllers;
 
-import com.projetofinal.demo.DTO.ProductDTO;
-import com.projetofinal.demo.services.ProductService;
+import com.projetoFinal.demo.DTO.ProductDTO;
+import com.projetoFinal.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

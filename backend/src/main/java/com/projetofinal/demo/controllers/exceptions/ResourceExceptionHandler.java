@@ -1,7 +1,7 @@
-package com.projetofinal.demo.controllers.exceptions;
+package com.projetoFinal.demo.controllers.exceptions;
 
-import com.projetofinal.demo.services.exceptions.DatabaseException;
-import com.projetofinal.demo.services.exceptions.ResourceNotFoundException;
+import com.projetoFinal.demo.services.exceptions.DatabaseException;
+import com.projetoFinal.demo.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

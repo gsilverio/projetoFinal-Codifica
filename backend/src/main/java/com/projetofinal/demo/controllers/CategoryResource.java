@@ -1,7 +1,7 @@
-package com.projetofinal.demo.controllers;
+package com.projetoFinal.demo.controllers;
 
-import com.projetofinal.demo.DTO.CategoryDTO;
-import com.projetofinal.demo.services.CategoryService;
+import com.projetoFinal.demo.DTO.CategoryDTO;
+import com.projetoFinal.demo.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
