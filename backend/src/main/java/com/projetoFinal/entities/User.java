@@ -1,55 +1,52 @@
 package com.projetoFinal.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "tb_users")
-public class User {
+@Table(name = "tb_user")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", unique = true)
-    private String username;
-
-    @Column(name = "firstname")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = {
             @JoinColumn(name = "id_user")},
             inverseJoinColumns = {@JoinColumn(name = "id_roles")})
-    private List<Roles> roles;
+    private Set<Role> roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private Address address;
 
     public User() {}
 
-    public User(String username, String firstName, String lastName, String password, List<Roles> roles) {
-
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.roles = roles;
-
-    }
-
-    public User(Long id, String username, String firstName, String lastName, String password, List<Roles> roles) {
-
+    public User(Long id, String firstName, String lastName, String email, String password, Address address) {
         this.id = id;
-        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.password = password;
-        this.roles = roles;
-
+        this.address = address;
     }
 
     public Long getId() {
@@ -60,12 +57,20 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -84,6 +89,35 @@ public class User {
         this.lastName = lastName;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
     public String getPassword() {
         return password;
     }
@@ -92,11 +126,24 @@ public class User {
         this.password = password;
     }
 
-    public List<Roles> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Roles> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
+
+    public boolean hasRole(Role roleName){
+        for(Role role : roles){
+           if(role.getAuthority().equals(roleName))
+               return true;
+        }
+        return false;
     }
 }
