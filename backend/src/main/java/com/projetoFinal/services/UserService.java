@@ -2,20 +2,22 @@ package com.projetoFinal.services;
 
 import com.projetoFinal.DTO.UserDTO;
 import com.projetoFinal.DTO.UserUpdateDTO;
-import com.projetoFinal.entities.Roles;
+import com.projetoFinal.entities.Role;
 import com.projetoFinal.entities.User;
+import com.projetoFinal.projections.UserDetailsProjection;
 import com.projetoFinal.repositories.RolesRepository;
 import com.projetoFinal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -27,17 +29,17 @@ public class UserService {
 
         User user = new User();
 
-        user.setFirstName(userDTO.firstname());
-        user.setLastName(userDTO.lastname());
-        user.setUsername(userDTO.username());
-        user.setPassword(userDTO.password());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
 
-        List<Roles> roles  = new ArrayList<>();
+        Set<Role> roles  = new HashSet<>();
 
         // id 2 no meu teste botei como USER
         // o usuario novo sempre vai ter role de user
         // adm tem q ser criando na mao
-        Roles role = rolesRepository.findById(2L).orElse(null);
+        Role role = rolesRepository.findById(2L).orElse(null);
 
         roles.add(role);
 
@@ -82,7 +84,7 @@ public class UserService {
 
         User user = userRepository.findById(id).orElse(null);
 
-        List<Roles> roles = user.getRoles();
+        Set<Role> roles = user.getRoles();
 
         roles.removeAll(roles);
 
@@ -97,7 +99,7 @@ public class UserService {
 
     private UserDTO convertDTO(User user) {
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(),user.getLastName(), user.getPassword(), user.getRoles());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getEmail(), user.getFirstName(),user.getLastName(), user.getPassword());
 
         return userDTO;
     }
@@ -109,4 +111,21 @@ public class UserService {
         return userDTO;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<UserDetailsProjection> result = userRepository.searchUserAndRolesByEmail(username);
+        if(result.isEmpty()){
+            throw new UsernameNotFoundException("User not found.");
+        } else {
+            User user = new User();
+            user.setEmail(username);
+            user.setPassword(result.get(0).getPassword());
+
+            for(UserDetailsProjection projection: result){
+                user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));
+            }
+
+            return user;
+        }
+    }
 }
