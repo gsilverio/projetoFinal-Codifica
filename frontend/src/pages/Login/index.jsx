@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./styles.css";
-import NavbarLogin from "../../components/Navbar-Login";
+
 import Footer from "../../components/Footer";
 import { func } from "prop-types";
 import { loginRequest } from "../../utils/request";
+import {
+  getTokenLocalStorage,
+  saveTokenLocalStorage,
+} from "../../utils/localStorage";
+import { useNavigate } from "react-router-dom";
+import NavbarLogin from "../../components/Navbar-Login";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -11,11 +17,14 @@ function Login() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   function handleSubmitForm(e) {
     e.preventDefault();
     loginRequest(formData)
       .then((response) => {
-        console.log(response.data);
+        saveTokenLocalStorage(response.data);
+        navigate("/admin");
       })
       .catch((error) => {
         console.log("Erro no login ", error);
