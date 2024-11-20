@@ -1,20 +1,3 @@
-// import Navbar from '../../components/Navbar';
-// import Carousel from '../../components/Carousel';
-// import Products from '../../components/Products';
-// import Footer from '../../components/Footer';
-
-// function Home() {
-//   return (
-//     <>
-//       <Navbar />
-//       <Carousel />
-//       <Products />
-//       <Footer />
-//     </>
-//   );
-// }
-
-// export default Home;
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Carousel from '../../components/Carousel';
