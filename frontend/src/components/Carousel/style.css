@@ -2,8 +2,3 @@
     height: 300px;
     overflow: hidden;
 }
-  
-.carousel-image img {
-    height: 100%;
-    object-fit: cover;
-}
