@@ -8,9 +8,13 @@ import com.projetoFinal.projections.UserDetailsProjection;
 import com.projetoFinal.repositories.RolesRepository;
 import com.projetoFinal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,6 +28,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private RolesRepository rolesRepository;
+
+
+
 
     public UserDTO createUser(UserDTO userDTO) {
 
@@ -109,6 +116,19 @@ public class UserService implements UserDetailsService {
         UserUpdateDTO userDTO = new UserUpdateDTO(user.getId(),user.getFirstName(),user.getLastName(), user.getPassword());
 
         return userDTO;
+    }
+    public UserDTO getMe(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
+        String userEmail = jwtPrincipal.getClaim("username");
+
+        User user  = userRepository.findByEmail(userEmail);
+
+        if(user != null){
+            return new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),user.getRoles(), user.getAddress());
+        }
+
+        throw new UsernameNotFoundException("User nao logado");
     }
 
     @Override

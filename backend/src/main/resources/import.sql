@@ -9,13 +9,16 @@
 -- INSERT IGNORE INTO `users` VALUES ('admin', '{bcrypt}$2a$12$kIWBj1W6Y/8G0b30Y4sW7ONP6oNZLeI77dcVeBfVYfBoAqoVN6Hb6', '1');
 -- INSERT IGNORE INTO `authorities` VALUES ('admin', 'admin');
 INSERT INTO tb_address(rua, cidade, estado, numero, complemento) VALUES('Rua TESTE', 'São Paulo', 'São Paulo', '12345', '');
+INSERT INTO tb_address(rua, cidade, estado, numero, complemento) VALUES('Rua TESTE1', 'São Paulo1', 'São Paulo', '12345', '');
 
 INSERT INTO tb_user(first_name, last_name, email, password, endereco_id) VALUES ('Guilherme', 'Silverio', 'gg@gmail.com','$2a$10$5z1i.tAWluen9N2NTAEQXeGA3n4Q8jzzcfaFsEaxzLXAOMuR2aQ1K',1);
+INSERT INTO tb_user(first_name, last_name, email, password, endereco_id) VALUES ('Malenia', 'BladeOfMiquella', 'malenia@gmail.com','$2a$10$5z1i.tAWluen9N2NTAEQXeGA3n4Q8jzzcfaFsEaxzLXAOMuR2aQ1K',2);
 INSERT INTO tb_role(authority) VALUES ('ROLE_ADMIN'), ('ROLE_OPERATOR');
 
 
 INSERT INTO user_roles(id_user, id_roles) VALUES (1,1);
 INSERT INTO user_roles(id_user, id_roles) VALUES (1,2);
+INSERT INTO user_roles(id_user, id_roles) VALUES (2,2);
 
 
 
