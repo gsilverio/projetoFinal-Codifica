@@ -29,7 +29,7 @@ const ProductInfo = ({ product, onBack }) => {
       <MDBContainer className="my-5">
         <MDBRow className="justify-content-center">
           <MDBCol xs="12" md="8" lg="6">
-            <MDBCard className="shadow-0" style={{ borderRadius: '15px' }}>
+            <MDBCard style={{ borderRadius: '15px' }}>
               <MDBBtn color="secondary" onClick={onBack} className="mb-3">
                 Voltar
               </MDBBtn>

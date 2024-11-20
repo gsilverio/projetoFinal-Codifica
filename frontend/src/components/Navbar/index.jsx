@@ -7,19 +7,27 @@ import './style.css';
 const Navbar = () => {
   const navigate = useNavigate();
 
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   const handleCartClick = () => {
     navigate('/cart');
+  };
+
+  const handleSacClick = () => {
+    navigate('/sac');
   };
 
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
-        <BootstrapNavbar.Brand href="#" className="text-light">
+        <BootstrapNavbar.Brand onClick={handleHomeClick} className="text-light">
           <img 
             src="./images/logo.png"
             alt="Logo" 
             className="d-inline-block align-top" 
-            style={{ width: '100px', height: '100px' }}
+            style={{ width: '100px', height: '100px', cursor: 'pointer', }}
           />
         </BootstrapNavbar.Brand>
         {/* <BootstrapNavbar.Brand href="#" className="text-light">Projeto Final</BootstrapNavbar.Brand> */}
@@ -31,7 +39,7 @@ const Navbar = () => {
             navbarScroll
           >
             {/* <Nav.Link href="#action1" className="text-light">Home</Nav.Link> */}
-            <Nav.Link href="#action2" className="text-light">
+            <Nav.Link onClick={handleSacClick} className="text-light">
               <img 
                 src="/icons/chat-dots.svg" 
                 alt="SAC Icon" 
@@ -54,7 +62,7 @@ const Navbar = () => {
                   src="/icons/person-circle.svg"
                   alt="Account Icon" 
                   className="icon me-2"
-                  title="Conta" 
+                  title="Conta"
                 />
               </>
             }
