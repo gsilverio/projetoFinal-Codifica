@@ -10,7 +10,7 @@
 -- INSERT IGNORE INTO `authorities` VALUES ('admin', 'admin');
 INSERT INTO tb_address(rua, cidade, estado, numero, complemento) VALUES('Rua TESTE', 'São Paulo', 'São Paulo', '12345', '');
 
-INSERT INTO tb_user(first_name, last_name, email, password, endereco_id) VALUES ('Guilherme', 'Silverio', 'gg@gmail.com','12345',1);
+INSERT INTO tb_user(first_name, last_name, email, password, endereco_id) VALUES ('Guilherme', 'Silverio', 'gg@gmail.com','$2a$10$5z1i.tAWluen9N2NTAEQXeGA3n4Q8jzzcfaFsEaxzLXAOMuR2aQ1K',1);
 INSERT INTO tb_role(authority) VALUES ('ROLE_ADMIN'), ('ROLE_OPERATOR');
 
 
