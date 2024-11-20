@@ -1,5 +1,6 @@
 package com.projetoFinal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -23,6 +24,7 @@ public class Address implements Serializable {
     private String complemento;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private User user;
 
     public Address(){}

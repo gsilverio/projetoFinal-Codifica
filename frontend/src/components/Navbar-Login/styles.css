@@ -1,0 +1,26 @@
+.navbar {
+  --mdb-navbar-padding-top: 0.5625rem;
+}
+
+.navbar-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-around !important;
+  min-height: 100px;
+}
+
+.mini-menu {
+  display: flex;
+  align-items: center;
+}
+.mini-menu p {
+  margin: 0;
+  margin-left: 10px;
+  text-align: start;
+  color: #fff;
+  font-size: 15px;
+}
+
+.mini-menu p > span > b > a {
+  color: #fff;
+}
