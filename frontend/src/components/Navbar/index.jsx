@@ -15,7 +15,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const handleCartClick = () => {
@@ -23,13 +23,12 @@ const Navbar = () => {
   };
 
   const handleSacClick = () => {
-    navigate('/sac');
+    navigate("/sac");
   };
 
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
-
         <BootstrapNavbar.Brand href="#" className="text-light">
           <img
             src="./images/logo.png"
@@ -52,10 +51,10 @@ const Navbar = () => {
             {/* <Nav.Link href="#action1" className="text-light">Home</Nav.Link> */}
 
             <Nav.Link onClick={handleSacClick} className="text-light">
-              <img 
-                src="/icons/chat-dots.svg" 
-                alt="SAC Icon" 
-                className="icon me-2" 
+              <img
+                src="/icons/chat-dots.svg"
+                alt="SAC Icon"
+                className="icon me-2"
                 title="SAC"
               />
             </Nav.Link>

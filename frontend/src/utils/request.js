@@ -2,6 +2,11 @@ import axios from "axios";
 import qs from "qs";
 import { BASE_URL, CLIENT_ID, CLIENT_SECRET, TOKEN_KEY } from "./system";
 import * as localStorageRequests from "./localStorage";
+import { Navigate, useNavigate } from "react-router-dom";
+import { history } from "./history";
+import { jwtDecode } from "jwt-decode";
+
+export const roleEnum = "ROLE_ADMIN" | "ROLE_OPERATOR";
 
 export function loginRequest(loginData) {
   const headers = {
@@ -19,6 +24,17 @@ export function loginRequest(loginData) {
   });
 }
 
+export function requestBackEnd(config) {
+  const headers = config.withCredentials
+    ? {
+        ...config.header,
+        Authorization:
+          "Bearer " + localStorageRequests.getAuthData().access_token,
+      }
+    : {};
+  return axios({ ...config, baseURL: BASE_URL, headers });
+}
+
 export function logout() {
   localStorageRequests.removeTokenLocalStorage;
 }
@@ -30,3 +46,58 @@ export function saveAccessToken(token) {
 export function getAccessToken(token) {
   localStorageRequests.getTokenLocalStorage(token);
 }
+
+export function getAccessTokenPayload() {
+  try {
+    const token = localStorageRequests.getAuthData().access_token;
+    return token == null ? undefined : jwtDecode(token);
+  } catch (error) {
+    return undefined;
+  }
+}
+
+export function isAuthenticated() {
+  let tokenPayload = getAccessTokenPayload();
+
+  return tokenPayload && tokenPayload.exp * 1000 > Date.now() ? true : false;
+}
+export const hasAnyRoles = (roles = []) => {
+  if (roles.length === 0) {
+    return true;
+  }
+
+  const tokenData = localStorageRequests.getAuthData();
+  if (tokenData !== undefined) {
+    for (var i = 0; i < roles.length; i++) {
+      if (tokenData.authorities?.includes(roles[i])) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+axios.interceptors.request.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (error.response.status === 401) {
+      console.log("401");
+      history.push("/login");
+    }
+    if (error.response.status === 403) {
+      history.push("/home");
+    }
+    return Promise.reject(error);
+  }
+);
