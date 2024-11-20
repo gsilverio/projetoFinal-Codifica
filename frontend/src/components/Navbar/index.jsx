@@ -1,12 +1,4 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-
-// import Button from 'react-bootstrap/Button';
-// import Container from 'react-bootstrap/Container';
-// import Form from 'react-bootstrap/Form';
-// import Nav from 'react-bootstrap/Nav';
-// import BootstrapNavbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Navbar as BootstrapNavbar, Nav, NavDropdown, Container, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Cart from '../../pages/Cart';
@@ -31,7 +23,7 @@ const Navbar = () => {
           />
         </BootstrapNavbar.Brand>
         {/* <BootstrapNavbar.Brand href="#" className="text-light">Projeto Final</BootstrapNavbar.Brand> */}
-        <BootstrapNavbar.Toggle aria-controls="navbarScroll" />
+        <BootstrapNavbar.Toggle className='bg-light' aria-controls="navbarScroll" />
         <BootstrapNavbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
@@ -101,5 +93,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-// https://paletadecores.com/paleta/44749d/c6d4e1/ffffff/ebe7e0/bdb8ad/

@@ -18,14 +18,12 @@ const CartProvider = ({ children }) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
   
       if (existingItem) {
-        // Se o item já existe, aumente a quantidade
         return prevCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
       } else {
-        // Caso contrário, adicione o novo item com quantidade 1
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
