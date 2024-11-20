@@ -14,13 +14,22 @@ import "./style.css";
 const Navbar = () => {
   const navigate = useNavigate();
 
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   const handleCartClick = () => {
     navigate("/cart");
+  };
+
+  const handleSacClick = () => {
+    navigate('/sac');
   };
 
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
+
         <BootstrapNavbar.Brand href="#" className="text-light">
           <img
             src="./images/logo.png"
@@ -41,11 +50,12 @@ const Navbar = () => {
             navbarScroll
           >
             {/* <Nav.Link href="#action1" className="text-light">Home</Nav.Link> */}
-            <Nav.Link href="#action2" className="text-light">
-              <img
-                src="/icons/chat-dots.svg"
-                alt="SAC Icon"
-                className="icon me-2"
+
+            <Nav.Link onClick={handleSacClick} className="text-light">
+              <img 
+                src="/icons/chat-dots.svg" 
+                alt="SAC Icon" 
+                className="icon me-2" 
                 title="SAC"
               />
             </Nav.Link>
@@ -58,6 +68,7 @@ const Navbar = () => {
                 title="Carrinho"
               />
             </Nav.Link>
+
             <NavDropdown
               title={
                 <>
