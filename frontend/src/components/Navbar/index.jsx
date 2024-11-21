@@ -12,22 +12,6 @@ import Cart from "../../pages/Cart";
 import "./style.css";
 
 const Navbar = () => {
-
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
-  const handleCartClick = () => {
-    navigate("/cart");
-  };
-
-  const handleSacClick = () => {
-    navigate("/sac");
-  };
-
-
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
