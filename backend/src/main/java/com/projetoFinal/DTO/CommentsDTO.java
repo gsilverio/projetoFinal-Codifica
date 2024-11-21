@@ -40,6 +40,14 @@ public class CommentsDTO implements Serializable {
         this.id = id;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,4 +1,7 @@
 package com.projetoFinal.DTO;
 
-public record UserUpdateDTO(Long id, String firstname, String lastname, String password) {
+import com.projetoFinal.entities.Address;
+
+public class UserUpdateDTO extends UserDTO{
+    private static final long serialVersionUID = 1L;
 }

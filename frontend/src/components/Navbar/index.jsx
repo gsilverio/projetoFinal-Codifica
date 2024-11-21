@@ -10,32 +10,35 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import Cart from "../../pages/Cart";
 import "./style.css";
+import {
+  getAccessToken,
+  hasRole,
+  hasRoleAdmin,
+  isAuthenticated,
+  logout,
+} from "../../utils/request";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
-  const handleCartClick = () => {
-    navigate("/cart");
-  };
-
-  const handleSacClick = () => {
-    navigate("/sac");
-  };
+  function handleLogout() {
+    console.log(getAccessToken());
+    logout();
+    navigate("/home");
+  }
 
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
         <BootstrapNavbar.Brand href="#" className="text-light">
-          <img
-            src="./images/logo.png"
-            alt="Logo"
-            className="d-inline-block align-top"
-            style={{ width: "130px", height: "130px" }}
-          />
+          <Link to={"/"}>
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              className="d-inline-block align-top"
+              style={{ width: "130px", height: "130px" }}
+            />
+          </Link>
         </BootstrapNavbar.Brand>
         {/* <BootstrapNavbar.Brand href="#" className="text-light">Projeto Final</BootstrapNavbar.Brand> */}
         <BootstrapNavbar.Toggle
@@ -82,11 +85,24 @@ const Navbar = () => {
               }
               id="navbarScrollingDropdown"
             >
-              {/* <NavDropdown title="Conta" id="navbarScrollingDropdown"> */}
-              <NavDropdown.Item href="/login">Entrar</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Cadastrar</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/admin">Configurações</NavDropdown.Item>
+              {isAuthenticated() ? (
+                <>
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
+                  {hasRoleAdmin() ? (
+                    <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
+                  ) : (
+                    <NavDropdown.Item href="/admin">NAO TEM</NavDropdown.Item>
+                  )}
+                </>
+              ) : (
+                <>
+                  <NavDropdown.Item href="/login">Entrar</NavDropdown.Item>
+                  <NavDropdown.Item href="/signup">Cadastrar</NavDropdown.Item>
+                </>
+              )}
             </NavDropdown>
           </Nav>
           <Form className="d-flex">

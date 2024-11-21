@@ -1,5 +1,6 @@
 package com.projetoFinal.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="tb_product")
+
 public class Product implements Serializable {
 
     @Serial
@@ -27,6 +29,7 @@ public class Product implements Serializable {
     private String imgUrL;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     Set<Comments> comments = new HashSet<>();
 
     @ManyToMany

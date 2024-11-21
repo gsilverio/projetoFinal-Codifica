@@ -2,6 +2,7 @@ package com.projetoFinal.DTO;
 
 import com.projetoFinal.entities.Address;
 import com.projetoFinal.entities.Role;
+import com.projetoFinal.entities.User;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,13 +23,13 @@ public class UserDTO {
 
     private String password;
 
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
 
     private Address address;
 
     public UserDTO() {}
 
-    public UserDTO(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, Address address) {
+    public UserDTO(Long id, String firstName, String lastName, String email, String password, Set<RoleDTO> roles, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,13 +47,22 @@ public class UserDTO {
         this.password = password;
     }
 
-    public UserDTO(Long id, String firstName, String lastName, String email, Set<Role> roles, Address address) {
+    public UserDTO(Long id, String firstName, String lastName, String email, Set<RoleDTO> roles, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.roles = roles;
         this.address = address;
+
+    }
+
+    public UserDTO(User entity) {
+        this.id = entity.getId();
+        this.firstName = entity.getFirstName();
+        this.lastName = entity.getLastName();
+        this.email = entity.getEmail();
+        entity.getRoles().forEach(role->this.roles.add(new RoleDTO(role)));
 
     }
 
@@ -104,24 +114,12 @@ public class UserDTO {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
 
-
-    public void addRole(Role role){
-        roles.add(role);
-    }
-
-    public boolean hasRole(Role roleName){
-        for(Role role : roles){
-           if(role.getAuthority().equals(roleName.getAuthority()))
-               return true;
-        }
-        return false;
-    }
 }

@@ -1,5 +1,6 @@
 package com.projetoFinal.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="tb_comments")
+
 public class Comments implements Serializable {
 
     @Serial
@@ -23,7 +25,8 @@ public class Comments implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="product_id")
-    @JsonIgnore
+    @JsonBackReference
+
     private Product product;
 
     public Comments(){}
