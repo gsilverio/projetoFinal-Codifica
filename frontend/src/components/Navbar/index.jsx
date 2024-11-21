@@ -12,10 +12,25 @@ import Cart from "../../pages/Cart";
 import "./style.css";
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
+  const handleSacClick = () => {
+    navigate("/sac");
+  };
+
+
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
-
         <BootstrapNavbar.Brand href="#" className="text-light">
           <img
             src="./images/logo.png"
@@ -35,6 +50,8 @@ const Navbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+
+            {/* <Nav.Link href="#action1" className="text-light">Home</Nav.Link> */}
             <Nav.Link>
               <Link to={"/sac"} className="text-light">
                 <img 
@@ -44,6 +61,7 @@ const Navbar = () => {
                   title="SAC"
                 />
               </Link>
+
             </Nav.Link>
             <Nav.Link>
               <Link to={"/cart"} className="text-light">

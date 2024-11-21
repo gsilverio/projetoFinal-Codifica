@@ -1,0 +1,17 @@
+.adm-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.adm-content {
+  padding: 20px;
+}
+
+@media (min-width: 1200px) {
+  .adm-container {
+    flex-direction: row;
+  }
+  .adm-content {
+    flex: 1;
+  }
+}
