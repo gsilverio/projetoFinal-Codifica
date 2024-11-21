@@ -40,7 +40,7 @@ function Admin() {
           <div className="adm-content">
             <Routes>
               <Route path="products/*" element={<Products />} />
-              <Route path="categories/*" element={<h1>Categories CRUD</h1>} />
+
               <Route path="/sales" element={<Sales />} />
             </Routes>
           </div>

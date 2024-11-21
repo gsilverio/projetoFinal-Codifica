@@ -1,12 +1,96 @@
-.login-container {
-  display: flex;
-  justify-content: space-evenly;
-  height: 65vh;
-  width: 100%;
-  background-color: #e3e3e3;
+/* Container principal */
+.login-page {
+  min-height: 100vh;
+  background-color: #f4f4f4;
 }
-.image-login-container {
+
+.container {
+  margin: 50px;
+}
+
+/* Box de login */
+.login-box {
+  background-color: #e1e1e1;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulário */
+.login-form {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 12px;
+  background-color: #ff9000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e57e00;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 576px) {
+  .login-box {
+    padding: 30px;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
 }

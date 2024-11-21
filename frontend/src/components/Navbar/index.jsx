@@ -92,9 +92,9 @@ const Navbar = () => {
                   </NavDropdown.Item>
                   <NavDropdown.Item href="/profile">Perfil</NavDropdown.Item>
                   {hasRoleAdmin() ? (
-                    <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
+                    ""
                   ) : (
-                    <NavDropdown.Item href="/admin">NAO TEM</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
                   )}
                 </>
               ) : (

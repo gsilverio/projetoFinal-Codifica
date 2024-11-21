@@ -1,27 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import "./styles.css";
-
 import Footer from "../../components/Footer";
-import { func } from "prop-types";
 import { loginRequest } from "../../utils/request";
-import {
-  getTokenLocalStorage,
-  saveTokenLocalStorage,
-} from "../../utils/localStorage";
+import { saveTokenLocalStorage } from "../../utils/localStorage";
 import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../../components/Navbar-Login";
 
 function Login() {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
 
-  function handleSubmitForm(e) {
-    e.preventDefault();
-    loginRequest(formData)
+  const onSubmit = (data) => {
+    loginRequest(data)
       .then((response) => {
         saveTokenLocalStorage(response.data);
         navigate("/admin");
@@ -29,53 +24,61 @@ function Login() {
       .catch((error) => {
         console.log("Erro no login ", error);
       });
-  }
-  function handleInputChange(e) {
-    const value = e.target.value;
-    const name = e.target.name;
-    setFormData({ ...formData, [name]: value });
-  }
+  };
+
   return (
-    <div>
+    <div className="login-page">
       <NavbarLogin />
-      <div className="login-container">
-        <div className="image-login-container">
-          <img
-            src="./images/logo.png"
-            alt="Logo"
-            className="d-inline-block align-top"
-            style={{ width: "300px", height: "300px" }}
-          />
-        </div>
-        <div className="login-form-container">
-          <h3>Acesse sua conta</h3>
-          <form className="login-form" onSubmit={handleSubmitForm}>
-            <div>
+      <div className="container d-flex justify-content-center align-items-center mg-10">
+        <div className="login-box shadow p-4 rounded">
+          <div className="logo-container text-center mb-4">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              className="logo img-fluid"
+            />
+          </div>
+          <h3 className="text-center mb-4">Acesse sua conta</h3>
+          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="mb-3">
               <input
                 type="text"
-                placeholder="email"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
+                className="form-control"
+                placeholder="E-mail"
+                {...register("username", {
+                  required: "O e-mail é obrigatório",
+                })}
               />
+              {errors.username && (
+                <span className="text-danger">{errors.username.message}</span>
+              )}
             </div>
-            <div className="form-error"></div>
-            <div>
+
+            <div className="mb-3">
               <input
                 type="password"
+                className="form-control"
                 placeholder="Senha"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
+                {...register("password", { required: "A senha é obrigatória" })}
               />
+              {errors.password && (
+                <span className="text-danger">{errors.password.message}</span>
+              )}
             </div>
-            <div>
-              <button type="submit">Entrar</button>
+
+            <div className="d-flex justify-content-between align-items-center">
+              <button type="submit" className="btn btn-warning w-100">
+                Entrar
+              </button>
+            </div>
+            <div className="mt-3 text-center">
+              <a href="/esqueci-senha" className="text-decoration-none">
+                Esqueci minha senha
+              </a>
             </div>
           </form>
         </div>
       </div>
-
       <Footer />
     </div>
   );

@@ -52,7 +52,7 @@ function NavbarLogin() {
             ou <br />
             <span>
               <b>
-                <Link to={"/#"}>CADASTRAR</Link>
+                <Link to={"/signup"}>CADASTRAR</Link>
               </b>
             </span>
           </p>

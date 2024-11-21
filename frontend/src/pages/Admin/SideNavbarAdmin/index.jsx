@@ -12,11 +12,6 @@ function SideNavbarAdmin() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin/categories" className="admin-nav-item">
-            <p>Categoria</p>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/admin/sales" className="admin-nav-item">
             <p>Vendas</p>
           </NavLink>
