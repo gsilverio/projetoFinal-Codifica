@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react'; 
+import { Link } from 'react-router-dom';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { CartContext } from '../../contexts/CartContext';
+import { CartModal } from '../Modal';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 // import './style.css'
@@ -21,6 +23,9 @@ const Products = ({ onProductClick }) => {
   const [ products, setProducts ] = useState([]);
   const [ loading, setLoading ] = useState(true);
   const [ error, setError ] = useState(null);
+
+  const [topRightModal, setTopRightModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/products')     
@@ -51,7 +56,9 @@ const Products = ({ onProductClick }) => {
   const handleAddToCart = (product, event) => {
     event.stopPropagation();
     addToCart(product);
-    alert(`${product.title} foi adicionado ao carrinho!`);
+    setSelectedProduct(product);
+    setTopRightModal(true);
+    // alert(`${product.title} foi adicionado ao carrinho!`);
   };
 
   if (loading) {
@@ -96,6 +103,7 @@ const Products = ({ onProductClick }) => {
                     alt={product.title}
                     fluid
                     className="w-100 h-100"
+                    onClick={() => onProductClick(product)}
                     style={{
                       objectFit: 'contain',
                       maxWidth: '100%',
@@ -103,7 +111,8 @@ const Products = ({ onProductClick }) => {
                       position: 'absolute',
                       top: '50%',
                       left: '50%',
-                      transform: 'translate(-50%, -50%)'
+                      transform: 'translate(-50%, -50%)',
+                      cursor: 'pointer',
                     }}
                   />
                 </div>
@@ -172,6 +181,13 @@ const Products = ({ onProductClick }) => {
           )
         })}
       </MDBRow>
+      {selectedProduct && (
+        <CartModal
+          product={selectedProduct}
+          toggleOpen={() => setTopRightModal(!topRightModal)}
+          topRightModal={topRightModal}
+        />
+      )}
     </MDBContainer>
   );
 }

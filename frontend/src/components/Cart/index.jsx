@@ -13,9 +13,12 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from 'react-router-dom';
 import { CartContext } from "../../contexts/CartContext";
+import { useCart } from "../../contexts/CartContext";
+import './style.css'
 
 const ShoppingCart = () => {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, incrementQuantity, decrementQuantity, removeFromCart } = useCart();
+  // const { cart, removeFromCart } = useContext(CartContext);
 
     return (
       <>
@@ -64,16 +67,37 @@ const ShoppingCart = () => {
                                       </MDBTypography>
                                       <p className="small mb-0">{item.description}</p>
                                     </div>
+                                    
                                   </div>
-                                  <div className="d-flex flex-row align-items-center">
-                                    <div style={{ width: "50px" }}>
-                                      <MDBTypography tag="h5" className="fw-normal mb-0">
-                                        {item.quantity}
-                                      </MDBTypography>
+                                  {/* <div className="d-flex flex-row align-items-center"> */}
+                                  <div className="d-flex flex-column flex-md-row align-items-center">
+                                    <div className="d-flex align-items-center mb-2 mb-md-0">
+                                    {/* <div className="d-flex align-items-center"> */}
+                                      <MDBBtn
+                                        color="danger"
+                                        size="sm"
+                                        onClick={() => decrementQuantity(item.id)}
+                                        disabled={item.quantity <= 1}
+                                      >
+                                        -
+                                      </MDBBtn>
+                                      <div style={{ width: "50px", textAlign: "center", }}>
+                                        <MDBTypography tag="h6" className="fw-normal mb-0">
+                                          {item.quantity}
+                                        </MDBTypography>
+                                      </div>
+                                      <MDBBtn
+                                        color="primary"
+                                        size="sm"
+                                        onClick={() => incrementQuantity(item.id)}
+                                      >
+                                        +
+                                      </MDBBtn>
                                     </div>
-                                    <div style={{ width: "80px" }}>
-                                      <MDBTypography tag="h5" className="mb-0">
-                                        R${item.price.toFixed(2)}
+                                    <div className="d-flex align-items-center mb-2 mb-md-0" style={{ width: "80px" }}>
+                                    {/* <div style={{ width: "80px" }}> */}
+                                      <MDBTypography tag="h6" className="mb-0">
+                                        R${(item.price * item.quantity).toFixed(2)}
                                       </MDBTypography>
                                     </div>
                                     <a href="#!" style={{ color: "#cecece" }} onClick={() => removeFromCart(item.id)}>
