@@ -35,7 +35,7 @@ const Navbar = () => {
         <BootstrapNavbar.Brand href="#" className="text-light">
           <Link to={"/"}>
             <img
-              src="./images/logo.png"
+              src="../images/logo.png"
               alt="Logo"
               className="d-inline-block align-top"
               style={{ width: "130px", height: "130px" }}
