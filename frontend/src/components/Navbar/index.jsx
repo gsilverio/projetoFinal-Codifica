@@ -7,25 +7,11 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cart from "../../pages/Cart";
 import "./style.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    navigate('/');
-  };
-
-  const handleCartClick = () => {
-    navigate("/cart");
-  };
-
-  const handleSacClick = () => {
-    navigate('/sac');
-  };
-
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
       <Container fluid>
@@ -49,26 +35,26 @@ const Navbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {/* <Nav.Link href="#action1" className="text-light">Home</Nav.Link> */}
-
-            <Nav.Link onClick={handleSacClick} className="text-light">
-              <img 
-                src="/icons/chat-dots.svg" 
-                alt="SAC Icon" 
-                className="icon me-2" 
-                title="SAC"
-              />
+            <Nav.Link>
+              <Link to={"/sac"} className="text-light">
+                <img 
+                  src="/icons/chat-dots.svg" 
+                  alt="SAC Icon" 
+                  className="icon me-2" 
+                  title="SAC"
+                />
+              </Link>
             </Nav.Link>
-            {/* <Nav.Link href="/cart" className="text-light"> */}
-            <Nav.Link onClick={handleCartClick} className="text-light">
-              <img
-                src="/icons/cart2.svg"
-                alt="Cart Icon"
-                className="icon me-2"
-                title="Carrinho"
-              />
+            <Nav.Link>
+              <Link to={"/cart"} className="text-light">
+                <img
+                  src="/icons/cart2.svg"
+                  alt="Cart Icon"
+                  className="icon me-2"
+                  title="Carrinho"
+                />
+              </Link>
             </Nav.Link>
-
             <NavDropdown
               title={
                 <>
@@ -86,7 +72,7 @@ const Navbar = () => {
               <NavDropdown.Item href="/login">Entrar</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Cadastrar</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Configurações</NavDropdown.Item>
+              <NavDropdown.Item href="/admin">Configurações</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex">

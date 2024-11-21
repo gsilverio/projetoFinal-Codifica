@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+// import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { CartContext } from '../../../contexts/CartContext';
 import {
@@ -13,9 +13,13 @@ import {
   MDBBtn,
   MDBRipple,
 } from "mdb-react-ui-kit";
+import { CommentModal } from '../../Modal';
+import Comments from '../../Comment';
 
 const ProductInfo = ({ product, onBack }) => {
   const { addToCart } = useContext(CartContext);
+
+  const [comments, setComments] = useState([]);
 
   if (!product) return null;
 
@@ -25,15 +29,19 @@ const ProductInfo = ({ product, onBack }) => {
     alert(`${product.title} foi adicionado ao carrinho!`);
   };
 
+  const addComment = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+
   return (
       <MDBContainer className="my-5">
         <MDBRow className="justify-content-center">
           <MDBCol xs="12" md="8" lg="6">
-            <MDBCard style={{ borderRadius: '15px' }}>
+            <MDBCard className='mb-5' style={{ borderRadius: '15px' }}>
               <MDBBtn color="secondary" onClick={onBack} className="mb-3">
                 Voltar
               </MDBBtn>
-              
+
               <MDBRipple rippleTag="div" className="bg-image rounded hover-overlay">
                 <MDBCardImage
                   src={product.imgSrc}
@@ -58,14 +66,18 @@ const ProductInfo = ({ product, onBack }) => {
               <div className="mb-3">
                 <p className="text-muted text-center">{product.description}</p>
               </div>
-
-              <div className="d-flex justify-content-end mt-3">
+              <hr />
+              <div className="d-flex justify-content-between mt-3">
+                {/* <a className="text-dark fw-bold" style={{ cursor:'pointer' }}>Adicionar Avaliação</a> */}
+                <CommentModal addComment={addComment} />
+                
                 <MDBBtn color="primary" onClick={(event) => handleAddToCart(product, event)}>
                   Comprar
                 </MDBBtn>
               </div>
             </MDBCardBody>
           </MDBCard>
+          <Comments comments={comments} />
         </MDBCol>
       </MDBRow>
     </MDBContainer>
