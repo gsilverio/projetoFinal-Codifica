@@ -31,7 +31,7 @@ const ProductCrudCard = ({ product, onDelete }) => {
           <ProductPrice price={product.price} />
         </div>
         <div className="product-crud-categories-contanier">
-          {product.categories.map((category) => (
+          {product?.categories?.map((category) => (
             <CategoryBadge name={category.name} key={category.id} />
           ))}
         </div>
