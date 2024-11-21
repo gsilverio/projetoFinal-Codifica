@@ -36,7 +36,10 @@ export function requestBackEnd(config) {
 }
 
 export function logout() {
-  localStorageRequests.removeTokenLocalStorage();
+
+  localStorageRequests.removeTokenLocalStorage;
+  localStorageRequests.removeCartLocalStorage;
+
 }
 
 export function saveAccessToken(token) {
