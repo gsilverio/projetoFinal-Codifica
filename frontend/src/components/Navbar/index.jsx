@@ -19,6 +19,7 @@ import {
 } from "../../utils/request";
 
 const Navbar = () => {
+
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -26,6 +27,7 @@ const Navbar = () => {
     logout();
     navigate("/home");
   }
+
 
   return (
     <BootstrapNavbar expand="lg" className="bg-dark custom-navbar">
