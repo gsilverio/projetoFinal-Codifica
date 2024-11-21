@@ -57,4 +57,12 @@ public class SalesService {
 
         return saleDTOs;
     }
+
+    public List<SaleDTOGet> getAllSales() {
+        List<Sales> salesList = salesRepository.findAll();  // Assuming you have a repository for Sales
+        // Convert the list of Sales entities to SaleDTOGet
+        return salesList.stream()
+                .map(sale -> new SaleDTOGet(sale))  // You should implement the conversion from Sales to SaleDTOGet
+                .collect(Collectors.toList());
+    }
 }

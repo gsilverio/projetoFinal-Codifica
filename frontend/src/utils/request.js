@@ -110,6 +110,12 @@ export const hasRoleAdmin = () => {
   return false;
 };
 
+export function gerarCodigoVenda() {
+  const codigo = Math.floor(100000 + Math.random() * 900000);
+
+  return codigo.toString();
+}
+
 export const printAuthorities = () => {
   const tokenData = localStorageRequests.getAuthData();
   console.log("Authorities:", tokenData?.authorities);

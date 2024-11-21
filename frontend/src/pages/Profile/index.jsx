@@ -29,6 +29,7 @@ const UserProfile = () => {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
+    console.log(userData.id);
 
     // Fetch purchases data
     if (userData.id) {

@@ -13,7 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
-import { requestBackEnd } from "../../utils/request"; // Importe a função requestBackEnd
+import { gerarCodigoVenda, requestBackEnd } from "../../utils/request"; // Importe a função requestBackEnd
 import "./style.css";
 import { toast } from "react-toastify";
 
@@ -58,7 +58,7 @@ const ShoppingCart = () => {
       (total, item) => total + item.price * item.quantity,
       0
     ); // Total do carrinho
-    const numPedido = "12345"; // Isso deve ser gerado de alguma forma
+    const numPedido = gerarCodigoVenda(); // Isso deve ser gerado de alguma forma
     const status = "completed"; // Status da venda
 
     // Corpo da requisição (SaleDTO) com a chave 'products'

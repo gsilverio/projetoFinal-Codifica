@@ -1,5 +1,7 @@
 package com.projetoFinal.DTO;
 
+import com.projetoFinal.entities.Sales;
+
 public class SaleDTOGet {
     private Long id;
     private Double value;
@@ -13,6 +15,15 @@ public class SaleDTOGet {
         this.value = value;
         this.numPedido = numPedido;
         this.status = status;
+    }
+    public SaleDTOGet(Sales sale) {
+        this.id = sale.getId();
+        this.value = sale.getValue();
+        this.numPedido = sale.getNumPedido();
+        this.status = sale.getStatus();
+    }
+
+    public SaleDTOGet( ) {
     }
 
     public Long getId() {

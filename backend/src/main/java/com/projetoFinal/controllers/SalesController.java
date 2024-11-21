@@ -36,4 +36,10 @@ public class SalesController {
         List<SaleDTOGet> sales = salesService.getAllSalesByUserId(userId);
         return ResponseEntity.ok(sales);
     }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<SaleDTOGet>> getAllSales() {
+        List<SaleDTOGet> sales = salesService.getAllSales();
+        return ResponseEntity.ok(sales);
+    }
 }
