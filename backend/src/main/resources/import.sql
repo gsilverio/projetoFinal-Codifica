@@ -85,7 +85,12 @@ INSERT INTO tb_product(name, description, price, img_url) VALUES ('HD Externo 2T
 INSERT INTO tb_product(name, description, price, img_url) VALUES ('Cabo USB-C para USB-A 1m', 'Cabo de 1 metro para conectar USB-C a USB-A', 29.90,'https://brmotorolanew.vtexassets.com/arquivos/ids/159065/Carregador-usb-C-1-foto-1--3-.png?v=637606482770170000');
 INSERT INTO tb_product(name, description, price, img_url) VALUES ('Estabilizador 300VA', 'Estabilizador para proteção de equipamentos eletrônicos', 189.90,'https://mirandacomputacao.jetassets.com.br/produto/multifotos/prd_178629_p_25219_prd_178629_p_25219.png.png');
 
--- --
+INSERT INTO tb_comments (id, comment, product_id) VALUES (1, 'Excelente qualidade!', 1);
+INSERT INTO tb_comments (id, comment, product_id) VALUES (2, 'Muito útil!', 1);
+INSERT INTO tb_comments (id, comment, product_id) VALUES (3, 'Entrega rápida!', 2);
+INSERT INTO tb_comments (id, comment, product_id) VALUES (4, 'Recomendo a todos!', 2);
+
+
 
 INSERT INTO tb_product_category(product_id, category_id) VALUES (1,5);
 INSERT INTO tb_product_category(product_id, category_id) VALUES (2,8);
@@ -136,3 +141,4 @@ INSERT INTO tb_product_category(product_id, category_id) VALUES (37,1);
 INSERT INTO tb_product_category(product_id, category_id) VALUES (38,2);
 INSERT INTO tb_product_category(product_id, category_id) VALUES (39,1);
 INSERT INTO tb_product_category(product_id, category_id) VALUES (40,10);
+

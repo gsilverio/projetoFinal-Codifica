@@ -1,6 +1,7 @@
 package com.projetoFinal.controllers;
 
 import com.projetoFinal.DTO.ProductDTO;
+import com.projetoFinal.projections.ProductProjection;
 import com.projetoFinal.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,10 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable
+    public ResponseEntity<Page<ProductDTO>> findAll(
+            @RequestParam(value = "name", defaultValue = "") String name,
+            @RequestParam(value = "categoryId", defaultValue = "0") String categoryId,
+            Pageable pageable
             /* UMA FORMA DE FAZER
             @RequestParam(value="page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
@@ -27,7 +31,7 @@ public class ProductController {
             @RequestParam(value = "orderBy", defaultValue = "name") String orderBy*/
 
     ){
-        Page<ProductDTO> list = service.findAllPaged(pageable);
+        Page<ProductDTO> list = service.findAllPaged(name, categoryId, pageable);
         return ResponseEntity.ok().body(list);
         //.ok()-> response com codigo 200
     }
