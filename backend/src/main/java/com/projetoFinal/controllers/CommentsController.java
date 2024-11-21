@@ -1,5 +1,6 @@
 package com.projetoFinal.controllers;
 
+import com.projetoFinal.DTO.CommentsDTO;
 import com.projetoFinal.entities.Comments;
 import com.projetoFinal.services.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class CommentsController {
     }
 
     @PostMapping
-    public ResponseEntity<Comments> createComment(@PathVariable Long productId, @RequestBody Comments comment) {
-        Comments createdComment = commentsService.createComment(productId, comment);
+    public ResponseEntity<CommentsDTO> createComment(@PathVariable Long productId, @RequestBody Comments comment) {
+        CommentsDTO createdComment = commentsService.createComment(productId, comment);
         return ResponseEntity.ok(createdComment);
     }
 

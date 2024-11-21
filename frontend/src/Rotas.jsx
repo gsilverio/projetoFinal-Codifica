@@ -16,6 +16,11 @@ import { history } from "./utils/history";
 import PrivateRoute from "./components/PrivateRoute";
 import Admin from "./pages/Admin";
 import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
+import ProductInfo from "./components/Products/ProductInfo";
+import { isAuthenticated } from "./utils/request";
+import LoginRoute from "./components/LoginRoute";
+import UserRegistration from "./pages/CadastroUsuario";
 
 function Rotas() {
   // return <></>;
@@ -24,17 +29,23 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/product/:productId" element={<ProductInfo />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/sac" element={<Sac />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signup" element={<UserRegistration />} />
+        <Route path="/admin/*" element={<Admin />} />
 
-        <Route path="/sac" element={<Sac />} />
+        <Route
+          path="/login"
+          element={
+            <LoginRoute>
+              <Login />
+            </LoginRoute>
+          }
+        />
 
-        <Route element={<PrivateRoute />}>
-          <Route path="/admin/*" element={<Admin />}></Route>
-        </Route>
-
-        <Route path="*" element={<Navigate to={"/"} />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </HistoyRouter>
   );

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+
 const CART_STORAGE_KEY = 'cart_items';
 
 export const CartContext = createContext();
@@ -22,7 +23,7 @@ const CartProvider = ({ children }) => {
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-  
+
       if (existingItem) {
         return prevCart.map((cartItem) =>
           cartItem.id === item.id
@@ -57,22 +58,12 @@ const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // const removeFromCart = (id) => {
-  //   setCart((prevCart) => {
-  //     const itemToRemove = prevCart.find((item) => item.id === id);
-  
-  //     if (itemToRemove.quantity > 1) {
-  //       return prevCart.map((item) =>
-  //         item.id === id
-  //           ? { ...item, quantity: item.quantity - 1 }
-  //           : item
-  //       );
-  //     } else {
-  //       return prevCart.filter((item) => item.id !== id);
-  //     }
-  //   });
-  // };
-  
+  // Função para zerar o carrinho
+  const clearCart = () => {
+    setCart([]); // Zera o estado do carrinho
+    localStorage.removeItem("cart"); // Remove o carrinho do localStorage (se necessário)
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -81,18 +72,13 @@ const CartProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         removeFromCart,
+        clearCart, // Disponibiliza a função no contexto
       }}
     >
       {children}
     </CartContext.Provider>
   );
 };
-//   return (
-//     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
-//       {children}
-//     </CartContext.Provider>
-//   );
-// };
 
 export const useCart = () => useContext(CartContext);
 

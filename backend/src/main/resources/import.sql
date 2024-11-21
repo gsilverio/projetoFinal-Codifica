@@ -1,13 +1,3 @@
--- create table users(username varchar_ignorecase(50) not null primary key,password varchar_ignorecase(500) not null,enabled boolean not null);
--- create table authorities (username varchar_ignorecase(50) not null,authority varchar_ignorecase(50) not null,constraint fk_authorities_users foreign key(username) references users(username));
--- create unique index ix_auth_username on authorities (username,authority);
---
---
--- INSERT IGNORE INTO `users` VALUES ('user', '{noop}UseR_@12345', '1');
--- INSERT IGNORE INTO `authorities` VALUES ('user', 'read');
---
--- INSERT IGNORE INTO `users` VALUES ('admin', '{bcrypt}$2a$12$kIWBj1W6Y/8G0b30Y4sW7ONP6oNZLeI77dcVeBfVYfBoAqoVN6Hb6', '1');
--- INSERT IGNORE INTO `authorities` VALUES ('admin', 'admin');
 INSERT INTO tb_address(rua, cidade, estado, numero, complemento) VALUES('Rua TESTE', 'São Paulo', 'São Paulo', '12345', '');
 INSERT INTO tb_address(rua, cidade, estado, numero, complemento) VALUES('Rua TESTE1', 'São Paulo1', 'São Paulo', '12345', '');
 
@@ -85,10 +75,10 @@ INSERT INTO tb_product(name, description, price, img_url) VALUES ('HD Externo 2T
 INSERT INTO tb_product(name, description, price, img_url) VALUES ('Cabo USB-C para USB-A 1m', 'Cabo de 1 metro para conectar USB-C a USB-A', 29.90,'https://brmotorolanew.vtexassets.com/arquivos/ids/159065/Carregador-usb-C-1-foto-1--3-.png?v=637606482770170000');
 INSERT INTO tb_product(name, description, price, img_url) VALUES ('Estabilizador 300VA', 'Estabilizador para proteção de equipamentos eletrônicos', 189.90,'https://mirandacomputacao.jetassets.com.br/produto/multifotos/prd_178629_p_25219_prd_178629_p_25219.png.png');
 
-INSERT INTO tb_comments (id, comment, product_id) VALUES (1, 'Excelente qualidade!', 1);
-INSERT INTO tb_comments (id, comment, product_id) VALUES (2, 'Muito útil!', 1);
-INSERT INTO tb_comments (id, comment, product_id) VALUES (3, 'Entrega rápida!', 2);
-INSERT INTO tb_comments (id, comment, product_id) VALUES (4, 'Recomendo a todos!', 2);
+INSERT INTO tb_comments (comment, product_id) VALUES ('Excelente qualidade!', 1);
+INSERT INTO tb_comments (comment, product_id) VALUES ('Muito útil!', 1);
+INSERT INTO tb_comments (comment, product_id) VALUES ('Entrega rápida!', 2);
+INSERT INTO tb_comments (comment, product_id) VALUES ('Recomendo a todos!', 2);
 
 
 

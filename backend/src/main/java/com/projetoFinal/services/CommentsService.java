@@ -1,5 +1,6 @@
 package com.projetoFinal.services;
 
+import com.projetoFinal.DTO.CommentsDTO;
 import com.projetoFinal.entities.Comments;
 import com.projetoFinal.entities.Product;
 import com.projetoFinal.repositories.CommentsRepository;
@@ -24,12 +25,18 @@ public class CommentsService {
         return product.getComments().stream().toList();
     }
 
-    public Comments createComment(Long productId, Comments comment) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
-        comment.setProduct(product);
-        return commentsRepository.save(comment);
+    public CommentsDTO createComment(Long productId, Comments comment) {
+        Product product = productRepository.getReferenceById(productId);
+        CommentsDTO commentsDTO = new CommentsDTO(comment.getId(), comment.getComment());
+
+        Comments entity = new Comments();
+        entity.setComment(comment.getComment());
+        entity.setProduct(product);
+
+        entity = commentsRepository.save(entity);
+        return new CommentsDTO(entity.getId(), entity.getComment());
     }
+
 
     public Comments updateComment(Long commentId, String updatedCommentText) {
         Comments comment = commentsRepository.findById(commentId)

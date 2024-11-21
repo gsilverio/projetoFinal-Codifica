@@ -36,8 +36,10 @@ export function requestBackEnd(config) {
 }
 
 export function logout() {
+
   localStorageRequests.removeTokenLocalStorage;
   localStorageRequests.removeCartLocalStorage;
+
 }
 
 export function saveAccessToken(token) {
@@ -62,6 +64,7 @@ export function isAuthenticated() {
 
   return tokenPayload && tokenPayload.exp * 1000 > Date.now() ? true : false;
 }
+
 export const hasAnyRoles = (roles = []) => {
   if (roles.length === 0) {
     return true;
@@ -76,6 +79,40 @@ export const hasAnyRoles = (roles = []) => {
     }
   }
   return false;
+};
+
+export const hasRole = () => {
+  const tokenData = localStorageRequests.getAuthData();
+
+  if (!tokenData || !tokenData.authorities) {
+    return false; // Retorna false se não houver dados de autenticação ou authorities
+  }
+
+  // Verifica se o único papel na lista de authorities é 'ROLE_OPERATOR'
+  return (
+    tokenData.authorities.length === 1 &&
+    tokenData.authorities[0] === "ROLE_OPERATOR"
+  );
+};
+
+export const hasRoleAdmin = () => {
+  const tokenData = localStorageRequests.getAuthData();
+
+  if (tokenData !== undefined && Array.isArray(tokenData.authorities)) {
+    console.log("Authorities:", tokenData.authorities); // Verificando authorities
+
+    // Verifica se ROLE_ADMIN está presente nas authorities de forma insensível a maiúsculas/minúsculas
+    return tokenData.authorities.some(
+      (role) => role.toUpperCase() === "ROLE_ADMIN"
+    );
+  }
+
+  return false;
+};
+
+export const printAuthorities = () => {
+  const tokenData = localStorageRequests.getAuthData();
+  console.log("Authorities:", tokenData?.authorities);
 };
 
 axios.interceptors.request.use(

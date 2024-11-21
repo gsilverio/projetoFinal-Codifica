@@ -1,7 +1,10 @@
 import "./styles.css";
 import {
   getAccessTokenPayload,
+  hasAnyRoles,
+  hasRoleAdmin,
   isAuthenticated,
+  printAuthorities,
   requestBackEnd,
 } from "../../utils/request";
 import Navbar from "../../components/Navbar";
@@ -14,6 +17,9 @@ import Sales from "./Sales";
 import Products from "./Products";
 
 function Admin() {
+  console.log("TEM ROLE: " + hasAnyRoles());
+  console.log("TEM ROLE admin: " + hasRoleAdmin());
+  console.log(printAuthorities());
   const config = {
     url: "/user/me",
     withCredentials: true,

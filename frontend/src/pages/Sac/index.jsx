@@ -107,37 +107,128 @@ const Sac = () => {
             collapseId={1}
             headerTitle="Código de Conduta e Ética"
           >
-            <strong>This is the first items accordion body.</strong> It is shown
-            by default, until the collapse plugin adds the appropriate classes
-            that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions.
-            You can modify any of this with custom CSS or overriding our default
-            variables. Its also worth noting that just about any HTML can go
-            within the <code>.accordion-body</code>, though the transition does
-            limit overflow.
+            <p>
+              Nosso compromisso é proporcionar uma experiência de compra segura,
+              respeitosa e ética para todos os nossos clientes. Seguimos os mais
+              altos padrões de conduta, garantindo:
+            </p>
+            <ul>
+              <li>
+                <strong>Respeito e cordialidade:</strong> Tratamos todos os
+                clientes, colaboradores e parceiros com respeito e cortesia.
+              </li>
+              <li>
+                <strong>Transparência:</strong> Informações sobre produtos,
+                preços, políticas e ofertas são sempre claras e atualizadas.
+              </li>
+              <li>
+                <strong>Confiança:</strong> Trabalhamos para proteger a
+                privacidade e segurança de todos os dados dos nossos clientes.
+              </li>
+              <li>
+                <strong>Responsabilidade social e ambiental:</strong> Estamos
+                comprometidos com práticas de negócios que respeitam o meio
+                ambiente e contribuem para a comunidade.
+              </li>
+            </ul>
+            <p>
+              Nosso Código de Conduta e Ética reflete os valores fundamentais da
+              nossa empresa. Ao realizar compras em nosso site, você concorda em
+              agir de maneira ética, respeitando as regras e normas que garantem
+              um ambiente positivo para todos.
+            </p>
           </MDBAccordionItem>
           <MDBAccordionItem
             collapseId={2}
             headerTitle="Politícas de Privacidade"
           >
-            <strong>This is the second items accordion body.</strong> It is
-            hidden by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. Its also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+            <p>
+              Na TechHub, a proteção dos seus dados pessoais é uma prioridade.
+              Ao realizar compras ou interagir com nosso site, você nos fornece
+              informações que são tratadas com a máxima segurança e
+              confidencialidade. Esta Política de Privacidade descreve como
+              coletamos, usamos, armazenamos e protegemos seus dados:
+            </p>
+            <ul>
+              <li>
+                <strong>Coleta de dados:</strong> Coletamos informações
+                pessoais, como nome, endereço, e-mail e detalhes de pagamento,
+                quando você realiza uma compra ou se registra em nossa
+                plataforma.
+              </li>
+              <li>
+                <strong>Uso de dados:</strong> Usamos suas informações para
+                processar pedidos, oferecer um atendimento personalizado e
+                melhorar sua experiência de compra.
+              </li>
+              <li>
+                <strong>Proteção de dados:</strong> Implementamos medidas de
+                segurança para proteger suas informações contra acessos não
+                autorizados, uso indevido ou divulgação.
+              </li>
+              <li>
+                <strong>Compartilhamento de dados:</strong> Não compartilhamos
+                seus dados com terceiros, exceto quando necessário para
+                processar pagamentos ou realizar entregas.
+              </li>
+              <li>
+                <strong>Seus direitos:</strong> Você tem o direito de acessar,
+                corrigir ou excluir suas informações pessoais a qualquer
+                momento, de acordo com as leis de proteção de dados aplicáveis.
+              </li>
+            </ul>
           </MDBAccordionItem>
           <MDBAccordionItem collapseId={3} headerTitle="Termos e Condições">
-            <strong>This is the third items accordion body.</strong> It is
-            hidden by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. Its also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+            <p>
+              Estes Termos e Condições regem o uso do nosso site e serviços de
+              e-commerce. Ao acessar ou realizar compras na TechHub, você
+              concorda com as seguintes condições:
+            </p>
+            <ul>
+              <li>
+                <strong>Produtos e Preços:</strong> Todos os produtos estão
+                sujeitos à disponibilidade de estoque. Os preços podem ser
+                alterados sem aviso prévio, mas a cotação no momento da compra
+                será a válida.
+              </li>
+              <li>
+                <strong>Pagamento:</strong> Aceitamos diversos métodos de
+                pagamento, como cartões de crédito, débito e outras formas de
+                pagamento eletrônico.
+              </li>
+              <li>
+                <strong>Entrega:</strong> Os prazos de entrega variam conforme o
+                local de destino e o método de envio escolhido. Caso haja
+                imprevistos, informaremos você sobre o status do seu pedido.
+              </li>
+              <li>
+                <strong>Política de Devolução:</strong> Se você não estiver
+                satisfeito com o produto, oferecemos um prazo para devolução ou
+                troca, conforme nossas políticas de devolução.
+              </li>
+              <li>
+                <strong>Responsabilidade do Usuário:</strong> Você concorda em
+                fornecer informações corretas e precisas durante o processo de
+                compra. É responsabilidade do cliente garantir que os dados
+                fornecidos estejam atualizados e completos.
+              </li>
+              <li>
+                <strong>Propriedade Intelectual:</strong> Todos os direitos de
+                propriedade intelectual relacionados ao site, incluindo marcas,
+                logos e conteúdos, são de nossa propriedade ou licenciados para
+                o uso exclusivo da nossa loja.
+              </li>
+              <li>
+                <strong>Modificações:</strong> Podemos atualizar ou alterar
+                esses Termos e Condições a qualquer momento, com a versão mais
+                recente disponível em nosso site.
+              </li>
+            </ul>
+            <p>
+              Esses Termos e Condições são regidos pela legislação brasileira.
+              Se você não concordar com qualquer uma das disposições, por favor,
+              não utilize nosso site.
+            </p>
           </MDBAccordionItem>
         </MDBAccordion>
       </MDBContainer>
