@@ -3,9 +3,9 @@ import "./styles.css";
 import Select from "react-select";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { requestBackEnd } from "../../../../utils/request";
 import CurrencyInput from "react-currency-input-field";
+import { toast } from "react-toastify";
 
 const Form = () => {
   const [selectCategories, setSelectCategories] = useState([]);
@@ -47,7 +47,7 @@ const Form = () => {
     };
     const config = {
       method: isEditing ? "PUT" : "POST",
-      url: isEditing ? `/products/${productId}` : `/products`,
+      url: isEditing ? `/products/${productId}` : `/productsx`,
       data: data,
       withCredentials: true,
       //NAO TEM DATA PORQUE GET NAO PRECISA DE CORPO

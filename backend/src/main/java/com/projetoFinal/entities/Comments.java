@@ -1,5 +1,6 @@
 package com.projetoFinal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,6 +23,7 @@ public class Comments implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="product_id")
+    @JsonIgnore
     private Product product;
 
     public Comments(){}
@@ -45,6 +47,14 @@ public class Comments implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
